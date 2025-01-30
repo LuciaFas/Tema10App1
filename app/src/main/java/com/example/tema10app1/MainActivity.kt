@@ -22,15 +22,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        lifecycleScope.launch {
-            getMovies()
+        binding.boton.setOnClickListener {
+            lifecycleScope.launch {
+                getMovies(binding.edit.text.toString())
+            }
         }
     }
 
-
-    private suspend fun getMovies() {
+    private suspend fun getMovies(filtro:String) {
         val apiKey = "e6399086"
-        val filtro = "world"
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://www.omdbapi.com/")
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         if (response.isSuccessful) {
             val peliculas = response.body()?.Search ?: emptyList()
-            
+
             linearLayoutManager = LinearLayoutManager(this)
             adapterMovie = Adapter(peliculas)
 

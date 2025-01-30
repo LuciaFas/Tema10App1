@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tema10App1</string>
+    <string name="peliculas">Peliculas</string>
+    <string name="filtrar_nombre">Filtrar Nombre</string>
 </resources>
